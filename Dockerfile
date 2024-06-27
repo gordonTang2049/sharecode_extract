@@ -1,31 +1,32 @@
 FROM python:3.10-alpine
 
-USER root
 
-RUN apt-get update && apt-get upgrade -y
+# USER root
 
-RUN apt-get install -y curl 
+# RUN apt-get update && apt-get upgrade -y
 
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - 
+# RUN apt-get install -y curl 
 
-RUN apt-get install -y nodejs
+# RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - 
 
-# install FreeTDS and dependencies
-RUN apt-get update \
- && apt-get install unixodbc -y \
- && apt-get install unixodbc-dev -y \
- && apt-get install freetds-dev -y \
- && apt-get install freetds-bin -y \
- && apt-get install tdsodbc -y \
- && apt-get install --reinstall build-essential -y
-# populate "ocbcinst.ini" as this is where ODBC driver config sits
+# RUN apt-get install -y nodejs
 
-RUN echo "[FreeTDS]\n\
-Description = FreeTDS Driver\n\
-Driver = /usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so\n\
-Setup = /usr/lib/x86_64-linux-gnu/odbc/libtdsS.so" >> /etc/odbcinst.ini
+# # install FreeTDS and dependencies
+# RUN apt-get update \
+#  && apt-get install unixodbc -y \
+#  && apt-get install unixodbc-dev -y \
+#  && apt-get install freetds-dev -y \
+#  && apt-get install freetds-bin -y \
+#  && apt-get install tdsodbc -y \
+#  && apt-get install --reinstall build-essential -y
+# # populate "ocbcinst.ini" as this is where ODBC driver config sits
 
-RUN apt-get update && apt-get upgrade -y
+# RUN echo "[FreeTDS]\n\
+# Description = FreeTDS Driver\n\
+# Driver = /usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so\n\
+# Setup = /usr/lib/x86_64-linux-gnu/odbc/libtdsS.so" >> /etc/odbcinst.ini
+
+# RUN apt-get update && apt-get upgrade -y
 
 RUN mkdir /opt/app
 
