@@ -16,7 +16,7 @@ connection_string = 'DRIVER={'+ sql_server +'};SERVER='+server+';DATABASE='+data
 def main():
 
     cnxn = pyodbc.connect(connection_string, autocommit=True)
-    df_code = pd.read_sql('SELECT TRIM([TICKER]), [IsShares] FROM [FINANCE].[DBO].[metadata] ORDER BY TICKER',cnxn)
-    print(df_code.to_dict())
+    df_code = pd.read_sql('SELECT TRIM([TICKER]) AS TICKER, [IsShares] FROM [FINANCE].[DBO].[metadata] ORDER BY TICKER',cnxn)
+    print(df_code.to_json())
 
 main()
