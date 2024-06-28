@@ -9,12 +9,6 @@ server = os.environ['SERVER_NAME']
 database = os.environ['DB_NAME']
 username = os.environ['USER']
 password = os.environ['DB_PASSWORD']
-# ti = os.environ['TASK_INSTANCE']
-
-task_id = os.environ['TASK_ID']
-dag_id = os.environ['DAG_ID']
-exec_date = os.environ['EXECUTION_DATE']
-
 
 sql_server = "FreeTDS"
 connection_string = 'DRIVER={'+ sql_server +'};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password + ';TrustServerCertificate=yes;'
