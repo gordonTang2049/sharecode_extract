@@ -26,7 +26,7 @@ def main():
     print(df_code)
 
     ti = TaskInstance(
-        task=task_id, 
+        task_id=task_id, 
         dag_id=dag_id, 
         execution_date=exec_date)
     
