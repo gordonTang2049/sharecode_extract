@@ -9,11 +9,11 @@ server = os.environ['SERVER_NAME']
 database = os.environ['DB_NAME']
 username = os.environ['USER']
 password = os.environ['DB_PASSWORD']
-ti = os.environ['TASK_INSTANCE']
+# ti = os.environ['TASK_INSTANCE']
 
-# task_id = os.environ['TASK_ID']
-# dag_id = os.environ['DAG_ID']
-# exec_date = os.environ['EXECUTION_DATE']
+task_id = os.environ['TASK_ID']
+dag_id = os.environ['DAG_ID']
+exec_date = os.environ['EXECUTION_DATE']
 
 
 sql_server = "FreeTDS"
@@ -24,10 +24,11 @@ def main():
     cnxn = pyodbc.connect(connection_string, autocommit=True)
     df_code = pd.read_sql('SELECT TRIM([TICKER]), [IsShares] FROM [FINANCE].[DBO].[metadata] ORDER BY TICKER',cnxn)
     print(df_code)
-    # ti = TaskInstance(
-    #     task=task_id, 
-    #     dag_id=dag_id, 
-    #     execution_date=exec_date);
+
+    ti = TaskInstance(
+        task=task_id, 
+        dag_id=dag_id, 
+        execution_date=exec_date)
     
     ti.xcom_push(df_code)
 
