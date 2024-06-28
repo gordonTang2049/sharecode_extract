@@ -23,13 +23,6 @@ def main():
 
     cnxn = pyodbc.connect(connection_string, autocommit=True)
     df_code = pd.read_sql('SELECT TRIM([TICKER]), [IsShares] FROM [FINANCE].[DBO].[metadata] ORDER BY TICKER',cnxn)
-    print(df_code)
-
-    ti = TaskInstance(
-        task_id=task_id, 
-        dag_id=dag_id, 
-        execution_date=exec_date)
-    
-    ti.xcom_push(df_code)
+    print(df_code.to_dict())
 
 main()
