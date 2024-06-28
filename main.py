@@ -14,6 +14,8 @@ sql_server = "FreeTDS"
 connection_string = 'DRIVER={'+ sql_server +'};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password + ';TrustServerCertificate=yes;'
 
 def main():
+    
+    cnxn = pyodbc.connect(connection_string, autocommit=True)
     df_code = pd.read_sql('SELECT TRIM([TICKER]), [IsShares] FROM metadata ORDER BY TICKER',cnxn)
     return df_code
 
