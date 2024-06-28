@@ -17,6 +17,7 @@ def main():
 
     cnxn = pyodbc.connect(connection_string, autocommit=True)
     df_code = pd.read_sql('SELECT TRIM([TICKER]), [IsShares] FROM [FINANCE].[DBO].[metadata] ORDER BY TICKER',cnxn)
+    print(df_code)
     return df_code
 
 main()
