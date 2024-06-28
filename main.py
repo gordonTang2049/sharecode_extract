@@ -28,6 +28,7 @@ def main():
     #     task=task_id, 
     #     dag_id=dag_id, 
     #     execution_date=exec_date);
-    ti.xcom_push(df_code)
+    
+    ti.xcom_push(key='df_code',value=df_code)
 
 main()
